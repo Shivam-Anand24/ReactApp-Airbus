@@ -16,6 +16,10 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import Snackbar from "@mui/material/Snackbar";
+import backgroundImage from '../images/tina-bosse-WSw-taiyZPk-unsplash.jpg';
+import { purple, green } from '@mui/material/colors';
+
+
 
 const LOGIN_URL = "/auth";
 
@@ -37,7 +41,17 @@ function Copyright(props) {
   );
 }
 
-const theme = createTheme();
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: '#40362A' ,  
+    },
+    secondary: {
+      main: '#C44002', 
+    },
+  },
+});
+
 
 export default function SignInSide(props) {
   const { setAuth } = useContext(AuthContext);
@@ -90,6 +104,7 @@ export default function SignInSide(props) {
 
   return (
     <ThemeProvider theme={theme}>
+      
       <Snackbar
         open={snackbarOpen}
         message={snackbarMessage}
@@ -105,7 +120,7 @@ export default function SignInSide(props) {
           sm={4}
           md={7}
           sx={{
-            backgroundImage: "url(https://unsplash.com/photos/Hcfwew744z4)",
+            backgroundImage: `url(${backgroundImage})`,
             backgroundRepeat: "no-repeat",
             backgroundColor: (t) =>
               t.palette.mode === "light"
@@ -115,6 +130,7 @@ export default function SignInSide(props) {
             backgroundPosition: "center",
           }}
         />
+        
         <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
           <Box
             sx={{
@@ -123,7 +139,8 @@ export default function SignInSide(props) {
               display: "flex",
               flexDirection: "column",
               alignItems: "center",
-            }}
+             
+             }}
           >
             <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
               <LockOutlinedIcon />
