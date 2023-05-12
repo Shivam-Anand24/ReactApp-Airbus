@@ -1,25 +1,12 @@
 import { useState } from "react";
 
 import LoginForm from "./components/loginForm";
+import Dashboard from "./pages/dashboard";
 
 const Login = () => {
-  const [success, setSuccess] = useState(false);
+  const [success, setSuccess] = useState(true);
 
-  return (
-    <>
-      {success ? (
-        <section>
-          <h1>You are logged in!</h1>
-          <br />
-          <p>
-            <a href="#">Go to Home</a>
-          </p>
-        </section>
-      ) : (
-        <LoginForm setSuccess={setSuccess} />
-      )}
-    </>
-  );
+  return <>{success ? <Dashboard /> : <LoginForm setSuccess={setSuccess} />}</>;
 };
 
 export default Login;
