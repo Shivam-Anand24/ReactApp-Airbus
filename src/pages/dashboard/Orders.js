@@ -17,7 +17,7 @@ const values = [
 export default function Orders(props) {
   return (
     <React.Fragment>
-      <Title>Recent Orders{props.name}</Title>
+      <Title>{props.name}</Title>
       <Table size="small">
         <TableHead>
           <TableRow>

@@ -172,7 +172,7 @@ function DashboardContent() {
           fontSize: "5rem",
         }}
       >
-      Welome To Dashboard
+      
       </Typography>
       <Typography
   component="div"
@@ -210,27 +210,10 @@ function DashboardContent() {
         textAlign: 'center',
       }}
     >
-      Add a Eco-Wash washing machine <br></br>– gain an everyday helper.
+      Welome To Dashboard
     
     </Typography>
-    <Typography
-      component="h3"
-      variant="subtitle1"
-      color="inherit"
-      sx={{
-        fontWeight: 'normal',
-        color: 'black',
-        fontFamily: 'Roboto',
-        fontSize: '1.4rem',
-        lineHeight: 1.5,
-        margin: '0',
-        textAlign: 'center',
-      }}
-    >
-      Designed for efficiency, built to last. Eco-Wash washing machines <br></br>empower you to wash your clothes with spotless results –
-       and<br></br> next to no effort.
-       Read on to find your perfect washing    appliance.
-    </Typography>
+    
   </Box>
 </Typography>
       
