@@ -2,6 +2,9 @@ import { useState } from "react";
 import { Button } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import axios from "../../api/axios";
+import CloudUploadOutlinedIcon from '@material-ui/icons/CloudUploadOutlined';
+import Typography from "@mui/material/Typography";
+
 
 const InvisibleInput = styled("input")({
   display: "none",
@@ -33,18 +36,38 @@ function CSVUploader() {
 
   return (
     <>
-      <label htmlFor="csv-upload">
-        <Button component="span">Upload CSV</Button>
-      </label>
+    <Typography variant="body1" sx={{ marginLeft: '8px', fontWeight: 'bold', fontSize: '1.2rem', color: '#333',  fontFamily: 'Poppins' }}>
+    Kindly Upload Your CSV here:-
+  </Typography>
+  <label htmlFor="csv-upload">
+  <Typography
+    component="span"
+    variant="body1"
+    sx={{ display: 'inline-flex', alignItems: 'center', cursor: 'pointer',
+     marginLeft: '15px',
+     textDecoration: 'underline', }}
+  >
+    <CloudUploadOutlinedIcon sx={{ marginRight: '5px' }} />
+    Choose Your File
+  </Typography>
+</label>
+
+
+
       <InvisibleInput
         id="csv-upload"
         type="file"
         onChange={handleFileChange}
         accept=".csv"
       />
-      <Button onClick={handleFileUpload} disabled={!file}>
-        Upload
-      </Button>
+        <Button onClick={handleFileUpload} disabled={!file}
+        variant="contained"
+        style={{ backgroundColor: "#40362A", color: "#ffffff" }}
+
+        startIcon={<CloudUploadOutlinedIcon />}
+        >
+          Upload
+        </Button>
     </>
   );
 }

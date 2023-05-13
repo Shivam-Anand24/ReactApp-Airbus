@@ -14,6 +14,7 @@ import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import { mainListItems } from "./listItems";
 import TableContainer from "./TableContainer";
 import CSVUploader from "./CsvUpload";
+import backgroundImage from '../../images/download.png';
 const drawerWidth = 240;
 
 const AppBar = styled(MuiAppBar, {
@@ -33,6 +34,16 @@ const AppBar = styled(MuiAppBar, {
     }),
   }),
 }));
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: '#40362A' ,  
+    },
+    secondary: {
+      main: '#C44002', 
+    },
+  },
+});
 
 const Drawer = styled(MuiDrawer, {
   shouldForwardProp: (prop) => prop !== "open",
@@ -76,6 +87,8 @@ function DashboardContent() {
           <Toolbar
             sx={{
               pr: "24px", // keep right padding when drawer closed
+              // color:'#40362A',
+              backgroundColor: "#40362A" ,
             }}
           >
             <IconButton
@@ -85,6 +98,7 @@ function DashboardContent() {
               onClick={toggleDrawer}
               sx={{
                 marginRight: "36px",
+                color:'#40362A',
                 ...(open && { display: "none" }),
               }}
             >
@@ -108,6 +122,7 @@ function DashboardContent() {
               alignItems: "center",
               justifyContent: "flex-end",
               px: [1],
+              color:'#40362A',
             }}
           >
             <IconButton onClick={toggleDrawer}>
@@ -130,6 +145,29 @@ function DashboardContent() {
           }}
         >
           <Toolbar />
+          <Typography
+        component="h2"
+        variant="h6"
+        color="inherit"
+        sx={{
+          my: 2,
+          ml: 2,
+          fontWeight: "bold",
+          color: "#C44002",
+          mt: 4,
+          textAlign: "center",
+          fontFamily: "Roboto",
+          fontSize: "5rem",
+      //     backgroundImage: `url(${backgroundImage})`,
+      // backgroundSize: 'cover',
+      // backgroundPosition: 'center',
+      // backgroundRepeat: 'no-repeat',
+      // padding: '40px',
+        }}
+      >
+        Welcome to The DashBoard
+      </Typography>
+         
           <CSVUploader />
           <TableContainer />
         </Box>
