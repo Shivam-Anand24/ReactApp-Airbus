@@ -15,7 +15,7 @@ import { mainListItems } from "./listItems";
 import TableContainer from "./TableContainer";
 import CSVUploader from "./CsvUpload";
 import backgroundImage from '../../images/logo-a-member-of-ebs-01.png';
-import backgroundImage1 from '../../images/photo-1604335399105-a0c585fd81a1.jpg';
+import backgroundImage1 from '../../images/bg1.avif';
 const drawerWidth = 240;
 
 const AppBar = styled(MuiAppBar, {
@@ -156,28 +156,7 @@ function DashboardContent() {
           }}
         >
           <Toolbar />
-          <Typography
-        component="h2"
-        variant="h6"
-        color="inherit"
-        sx={{
-          my: 2,
-          ml: 2,
-          fontWeight: "bold",
-          color: "#C44002",
-          mt: 4,
-          textAlign: "center",
-          fontFamily: "Roboto",
-          fontSize: "5rem",
-          backgroundImage: `url(${backgroundImage})`,
-      backgroundSize: 'cover',
-      backgroundPosition: 'center',
-      backgroundRepeat: 'no-repeat',
-      padding: '40px', 
-      height: '500px',
-        }}
-      >
-      </Typography>
+        
       <Typography
         component="h2"
         variant="h6"
