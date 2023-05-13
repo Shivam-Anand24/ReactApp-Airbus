@@ -1,22 +1,20 @@
-import Login from "./Login";
+import Login from "./components/Login";
 import Layout from "./components/Layout";
 import { Routes, Route } from "react-router-dom";
 import Dashboard from "./pages/dashboard";
 import Unauthorized from "./components/Unauthorized";
 import Missing from "./components/Missing";
+import RequireAuth from "./components/RequireAuth";
 
 function App() {
-  const styles = {
-    backgroundColor: "#516B60"
-  };
   return (
     <Routes>
       <Route path="/" element={<Layout />}>
         <Route path="login" element={<Login />} />
         <Route path="unauthorized" element={<Unauthorized />} />
-
-        <Route path="/" element={<Dashboard />} />
-
+        <Route element={<RequireAuth />}>
+          <Route path="/" element={<Dashboard />} />
+        </Route>
         <Route path="*" element={<Missing />} />
       </Route>
     </Routes>
