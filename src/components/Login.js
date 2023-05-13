@@ -1,5 +1,5 @@
-import { useState, useContext } from "react";
-import AuthContext from "../context/AuthProvider";
+import { useState } from "react";
+import useAuth from "../hooks/useAuth";
 
 import axios from "../api/axios";
 
@@ -8,7 +8,6 @@ import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
-import Link from "@mui/material/Link";
 import Paper from "@mui/material/Paper";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
@@ -16,12 +15,8 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import Snackbar from "@mui/material/Snackbar";
-import backgroundImage from '../images/tina-bosse-WSw-taiyZPk-unsplash.jpg';
-import { purple, green } from '@mui/material/colors';
-
-
-
-const LOGIN_URL = "/auth";
+import backgroundImage from "../images/tina-bosse-WSw-taiyZPk-unsplash.jpg";
+import { useNavigate, useLocation } from "react-router-dom";
 
 function Copyright(props) {
   return (
@@ -31,12 +26,9 @@ function Copyright(props) {
       align="center"
       {...props}
     >
-      {"Copyright © "}
-      <Link color="inherit" href="https://mui.com/">
-        EcoWash
-      </Link>{" "}
+      {"Copyright © EcoWash"}
+
       {new Date().getFullYear()}
-      {"."}
     </Typography>
   );
 }
@@ -44,17 +36,19 @@ function Copyright(props) {
 const theme = createTheme({
   palette: {
     primary: {
-      main: '#40362A' ,  
+      main: "#40362A",
     },
     secondary: {
-      main: '#C44002', 
+      main: "#C44002",
     },
   },
 });
 
-
-export default function SignInSide(props) {
-  const { setAuth } = useContext(AuthContext);
+export default function Login() {
+  const { setAuth } = useAuth();
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
   const [emailError, setEmailError] = useState(false);
   const [passwordError, setPasswordError] = useState(false);
   const [snackbarOpen, setSnackbarOpen] = useState(false);
@@ -75,19 +69,20 @@ export default function SignInSide(props) {
     }
 
     try {
-      const response = await axios.post(LOGIN_URL, JSON.stringify(formData), {
+      const response = await axios.post("/auth/", JSON.stringify(formData), {
         headers: { "Content-Type": "application/json" },
-        withCredentials: true,
       });
+      console.log(response.data.role);
       const accessToken = response?.data?.accessToken;
-      const roles = response?.data?.roles;
+      const roles = [response?.data?.role];
       setAuth({
         user: formData.email,
         pwd: formData.password,
         roles,
         accessToken,
       });
-      props.setSuccess(true);
+
+      navigate(from, { replace: true });
     } catch (err) {
       if (!err?.response) {
         setSnackbarMessage("No Server Response");
@@ -104,7 +99,6 @@ export default function SignInSide(props) {
 
   return (
     <ThemeProvider theme={theme}>
-      
       <Snackbar
         open={snackbarOpen}
         message={snackbarMessage}
@@ -130,7 +124,7 @@ export default function SignInSide(props) {
             backgroundPosition: "center",
           }}
         />
-        
+
         <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
           <Box
             sx={{
@@ -139,8 +133,7 @@ export default function SignInSide(props) {
               display: "flex",
               flexDirection: "column",
               alignItems: "center",
-             
-             }}
+            }}
           >
             <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
               <LockOutlinedIcon />
