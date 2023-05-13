@@ -36,16 +36,19 @@ function CSVUploader() {
 
   return (
     <>
+    
     <Typography variant="body1" sx={{ marginLeft: '8px', fontWeight: 'bold', fontSize: '1.2rem', color: '#333',  fontFamily: 'Poppins' }}>
     Kindly Upload Your CSV here:-
   </Typography>
+  <div style={{ display: 'flex', alignItems: 'center', marginLeft: '15px' }}>
   <label htmlFor="csv-upload">
   <Typography
     component="span"
     variant="body1"
     sx={{ display: 'inline-flex', alignItems: 'center', cursor: 'pointer',
      marginLeft: '15px',
-     textDecoration: 'underline', }}
+     textDecoration: 'underline', 
+     marginRight: '20px'}}
   >
     <CloudUploadOutlinedIcon sx={{ marginRight: '5px' }} />
     Choose Your File
@@ -68,6 +71,7 @@ function CSVUploader() {
         >
           Upload
         </Button>
+        </div>
     </>
   );
 }
