@@ -72,8 +72,9 @@ export default function Login() {
       const response = await axios.post("/auth/", JSON.stringify(formData), {
         headers: { "Content-Type": "application/json" },
       });
+      console.log(response.data.role);
       const accessToken = response?.data?.accessToken;
-      const roles = response?.data?.roles;
+      const roles = [response?.data?.role];
       setAuth({
         user: formData.email,
         pwd: formData.password,
