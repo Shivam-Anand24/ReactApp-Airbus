@@ -18,11 +18,13 @@ function CSVUploader() {
   };
 
   const handleFileUpload = async (event) => {
+    console.log("here");
     const selectedFile = event.target.files[0];
     const formData = new FormData();
-    formData.append("csvFile", selectedFile);
+    formData.append("csv_file", selectedFile);
+    formData.append("key", "fabrication");
     try {
-      const response = await axios.post("/api/upload-csv", formData, {
+      const response = await axios.post("/upload/", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },

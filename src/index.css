@@ -5,12 +5,3 @@
   padding: 0;
   box-sizing: border-box;
 }
-
-html {
-  background-color: #516B60;
-}
-
-body {
-    min-height: 100vh;
-    background-color: #516B60;
-}
