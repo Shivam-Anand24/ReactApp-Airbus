@@ -1,4 +1,4 @@
-import * as React from "react";
+import { useEffect, useState } from "react";
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
@@ -9,12 +9,28 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 
+import axios from "../../api/axios";
+
 function TableContainer() {
-  const [age, setAge] = React.useState("");
+  const [tableName, setTableName] = useState("");
+  const [tableData, setTableData] = useState({ headers: [], values: [] });
 
   const handleChange = (event) => {
-    setAge(event.target.value);
+    setTableName(event.target.value);
   };
+
+  useEffect(() => {
+    if (tableName) {
+      axios
+        .get(`/api/table/${tableName}`)
+        .then((response) => {
+          setTableData(response.data);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    }
+  }, [tableName]);
   return (
     <>
       <Container maxWidth="lg" sx={{ mt: 6, mb: 6 }}>
@@ -24,26 +40,32 @@ function TableContainer() {
             <Select
               labelId="select-label"
               id="simple-select"
-              value={age}
-              label="Age"
+              value={tableName}
+              label="Table Name"
               onChange={handleChange}
             >
-              <MenuItem value={10}>Ten</MenuItem>
-              <MenuItem value={20}>Twenty</MenuItem>
-              <MenuItem value={30}>Thirty</MenuItem>
+              <MenuItem value="table1">Table 1</MenuItem>
+              <MenuItem value="table2">Table 2</MenuItem>
+              <MenuItem value="table3">Table 3</MenuItem>
             </Select>
           </FormControl>
         </Box>
       </Container>
-      <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
-        <Grid container spacing={3}>
-          <Grid item xs={12}>
-            <Paper sx={{ p: 2, display: "flex", flexDirection: "column" }}>
-              <Orders />
-            </Paper>
+      {tableName && (
+        <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
+          <Grid container spacing={3}>
+            <Grid item xs={12}>
+              <Paper sx={{ p: 2, display: "flex", flexDirection: "column" }}>
+                <Orders
+                  headers={tableData.headers}
+                  values={tableData.values}
+                  name={tableName}
+                />
+              </Paper>
+            </Grid>
           </Grid>
-        </Grid>
-      </Container>
+        </Container>
+      )}
     </>
   );
 }

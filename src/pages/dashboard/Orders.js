@@ -14,10 +14,10 @@ const values = [
   { id: "3", item: "spinner", quan: 15 },
 ];
 
-export default function Orders() {
+export default function Orders(props) {
   return (
     <React.Fragment>
-      <Title>Recent Orders</Title>
+      <Title>Recent Orders{props.name}</Title>
       <Table size="small">
         <TableHead>
           <TableRow>
