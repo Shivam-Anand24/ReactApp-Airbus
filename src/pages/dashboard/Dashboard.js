@@ -14,7 +14,8 @@ import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import { mainListItems } from "./listItems";
 import TableContainer from "./TableContainer";
 import CSVUploader from "./CsvUpload";
-import backgroundImage from '../../images/download.png';
+import backgroundImage from '../../images/logo-a-member-of-ebs-01.png';
+import backgroundImage1 from '../../images/photo-1604335399105-a0c585fd81a1.jpg';
 const drawerWidth = 240;
 
 const AppBar = styled(MuiAppBar, {
@@ -57,6 +58,7 @@ const Drawer = styled(MuiDrawer, {
       duration: theme.transitions.duration.enteringScreen,
     }),
     boxSizing: "border-box",
+    backgroundColor: '#f1f1f1', 
     ...(!open && {
       overflowX: "hidden",
       transition: theme.transitions.create("width", {
@@ -71,7 +73,16 @@ const Drawer = styled(MuiDrawer, {
   },
 }));
 
-const mdTheme = createTheme();
+const mdTheme = createTheme({
+  palette: {
+    primary: {
+      main: '#40362A' ,  
+    },
+    secondary: {
+      main: '#C44002', 
+    },
+  },
+});
 
 function DashboardContent() {
   const [open, setOpen] = React.useState(true);
@@ -98,7 +109,7 @@ function DashboardContent() {
               onClick={toggleDrawer}
               sx={{
                 marginRight: "36px",
-                color:'#40362A',
+                color:"#FFFFFF",
                 ...(open && { display: "none" }),
               }}
             >
@@ -158,15 +169,92 @@ function DashboardContent() {
           textAlign: "center",
           fontFamily: "Roboto",
           fontSize: "5rem",
-      //     backgroundImage: `url(${backgroundImage})`,
-      // backgroundSize: 'cover',
-      // backgroundPosition: 'center',
-      // backgroundRepeat: 'no-repeat',
-      // padding: '40px',
+          backgroundImage: `url(${backgroundImage})`,
+      backgroundSize: 'cover',
+      backgroundPosition: 'center',
+      backgroundRepeat: 'no-repeat',
+      padding: '40px', 
+      height: '500px',
         }}
       >
-        Welcome to The DashBoard
       </Typography>
+      <Typography
+        component="h2"
+        variant="h6"
+        color="inherit"
+        sx={{
+          my: 2,
+          ml: 2,
+          fontWeight: "bold",
+          color: "#C44002",
+          mt: 4,
+          textAlign: "center",
+          fontFamily: "Roboto",
+          fontSize: "5rem",
+        }}
+      >
+      Welome To Dashboard
+      </Typography>
+      <Typography
+  component="div"
+  variant="h2"
+  color="inherit"
+  sx={{
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    height: '500px',
+    backgroundImage: `url(${backgroundImage1})`,
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    backgroundRepeat: 'no-repeat',
+    position: 'relative',
+  }}
+>
+  <Box
+    component="div"
+    sx={{
+      backgroundColor: 'white',
+      padding: '20px',
+      //borderRadius: '8px',
+    }}
+  >
+    <Typography
+      component="h2"
+      variant="h6"
+      color="inherit"
+      sx={{
+        fontWeight: 'bold',
+        color: 'Black',
+        fontFamily: 'Roboto',
+        fontSize: '2rem',
+        textAlign: 'center',
+      }}
+    >
+      Add a Eco-Wash washing machine <br></br>– gain an everyday helper.
+    
+    </Typography>
+    <Typography
+      component="h3"
+      variant="subtitle1"
+      color="inherit"
+      sx={{
+        fontWeight: 'normal',
+        color: 'black',
+        fontFamily: 'Roboto',
+        fontSize: '1.4rem',
+        lineHeight: 1.5,
+        margin: '0',
+        textAlign: 'center',
+      }}
+    >
+      Designed for efficiency, built to last. Eco-Wash washing machines <br></br>empower you to wash your clothes with spotless results –
+       and<br></br> next to no effort.
+       Read on to find your perfect washing    appliance.
+    </Typography>
+  </Box>
+</Typography>
+      
          
           <CSVUploader />
           <TableContainer />
