@@ -169,7 +169,7 @@ function DashboardContent() {
           mt: 4,
           textAlign: "center",
           fontFamily: "Roboto",
-          fontSize: "5rem",
+          fontSize: "8rem",
         }}
       >
       
