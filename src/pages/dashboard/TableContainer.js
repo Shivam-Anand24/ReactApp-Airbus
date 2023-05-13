@@ -22,7 +22,7 @@ function TableContainer() {
   useEffect(() => {
     if (tableName) {
       axios
-        .get(`/api/table/${tableName}`)
+        .get(`/data/${tableName}`)
         .then((response) => {
           setTableData(response.data);
         })
@@ -44,9 +44,11 @@ function TableContainer() {
               label="Table Name"
               onChange={handleChange}
             >
-              <MenuItem value="table1">Table 1</MenuItem>
-              <MenuItem value="table2">Table 2</MenuItem>
-              <MenuItem value="table3">Table 3</MenuItem>
+              <MenuItem value="assembly">Assembly</MenuItem>
+              <MenuItem value="fabrication">Fabrication</MenuItem>
+              <MenuItem value="process">Process</MenuItem>
+              <MenuItem value="sub_assembly">Sub Assembly</MenuItem>
+              <MenuItem value="item_category">Item Category</MenuItem>
             </Select>
           </FormControl>
         </Box>
